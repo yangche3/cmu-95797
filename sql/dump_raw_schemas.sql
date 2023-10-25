@@ -1,5 +1,5 @@
 .echo on
-
+-- list out all tables and fetch details of each
 SHOW TABLES;
 DESCRIBE "bike_data";
 DESCRIBE "central_park_weather";

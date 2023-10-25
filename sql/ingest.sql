@@ -1,3 +1,5 @@
+
+--Create tables from downloaded data files 
 CREATE TABLE IF NOT EXISTS bike_data
     as select * from read_csv_auto('./data/citibike-tripdata.csv.gz', union_by_name=True, filename=True);
 
