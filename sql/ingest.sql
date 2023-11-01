@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS central_park_weather
     as select * from read_csv_auto('./data/central_park_weather.csv', union_by_name=True, filename=True, all_varchar=True);
 
 CREATE TABLE IF NOT EXISTS fhv_bases
-    as select * from read_csv_auto('./data/fhv_bases.csv', union_by_name=True, filename=True,all_varchar=True,header=True);
+    as select * from read_csv_auto('./data/fhv_bases.csv', union_by_name=True, filename=True, all_varchar=True, header=True);
 
 CREATE TABLE IF NOT EXISTS fhv_tripdata as 
     select * from read_parquet('./data/taxi/fhv_tripdata.parquet', union_by_name=True, filename=True,all_varchar=True);
