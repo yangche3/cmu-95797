@@ -1,3 +1,10 @@
+DROP TABLE bike_data;
+DROP TABLE central_park_weather;
+DROP TABLE fhv_bases;
+DROP TABLE fhv_tripdata;
+DROP TABLE fhvhv_tripdata;
+DROP TABLE green_tripdata;
+DROP TABLE yellow_tripdata;
 
 --Create tables from downloaded data files 
 CREATE TABLE IF NOT EXISTS bike_data
@@ -10,16 +17,16 @@ CREATE TABLE IF NOT EXISTS fhv_bases
     as select * from read_csv_auto('./data/fhv_bases.csv', union_by_name=True, filename=True, header=True, all_varchar=True);
 
 CREATE TABLE IF NOT EXISTS fhv_tripdata as 
-    select * from read_parquet('./data/taxi/fhv_tripdata.parquet', union_by_name=True, filename=True,all_varchar=True);
+    select * from read_parquet('./data/taxi/fhv_tripdata.parquet', union_by_name=True, filename=True, all_varchar=True);
 
 CREATE TABLE IF NOT EXISTS fhvhv_tripdata as 
-    select * from read_parquet('./data/taxi/fhvhv_tripdata.parquet', union_by_name=True, filename=True,all_varchar=True);
+    select * from read_parquet('./data/taxi/fhvhv_tripdata.parquet', union_by_name=True, filename=True, all_varchar=True);
 
 CREATE TABLE IF NOT EXISTS green_tripdata as 
-    select * from read_parquet('./data/taxi/green_tripdata.parquet', union_by_name=True, filename=True,all_varchar=True);
+    select * from read_parquet('./data/taxi/green_tripdata.parquet', union_by_name=True, filename=True, all_varchar=True);
 
 CREATE TABLE IF NOT EXISTS yellow_tripdata as 
-    select * from read_parquet('./data/taxi/yellow_tripdata.parquet', union_by_name=True, filename=True,all_varchar=True);
+    select * from read_parquet('./data/taxi/yellow_tripdata.parquet', union_by_name=True, filename=True, all_varchar=True);
 
 
 
