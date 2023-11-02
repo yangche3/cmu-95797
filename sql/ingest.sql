@@ -1,3 +1,12 @@
+Delete table fhv_bases
+Delete table central_park_weather
+Delete table yellow_tripdata
+Delete table green_tripdata
+Delete table fhvhv_tripdata
+Delete table fhv_tripdata
+Delete table bike_data
+
+
 -- load location & weather data from CSV files, merging columns by name and storing as strings
 create table fhv_bases as select * from  read_csv_auto('./data/fhv_bases.csv', union_by_name=True, filename=True, all_varchar=1, header=True);
 create table central_park_weather as select * from read_csv_auto('./data/central_park_weather.csv', union_by_name=True, filename=True, all_varchar=1);
