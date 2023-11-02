@@ -1,10 +1,10 @@
-drop table IF EXISTS fhv_bases
-drop table IF EXISTS central_park_weather
-drop table IF EXISTS yellow_tripdata
-drop table IF EXISTS green_tripdata
-drop table IF EXISTS fhvhv_tripdata
-drop table IF EXISTS fhv_tripdata
-drop table IF EXISTS bike_data
+drop table IF EXISTS fhv_bases;
+drop table IF EXISTS central_park_weather;
+drop table IF EXISTS yellow_tripdata;
+drop table IF EXISTS green_tripdata;
+drop table IF EXISTS fhvhv_tripdata;
+drop table IF EXISTS fhv_tripdata;
+drop table IF EXISTS bike_data;
 
 
 -- load location & weather data from CSV files, merging columns by name and storing as strings
