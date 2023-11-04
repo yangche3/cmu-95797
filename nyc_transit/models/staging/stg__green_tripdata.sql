@@ -33,4 +33,21 @@ cleaned AS (
 
 )
 
-SELECT * FROM cleaned
+SELECT * 
+FROM cleaned
+-- eliminate any future data
+WHERE lpep_pickup_datetime < '2022-12-31'
+AND lpep_dropoff_datetime < '2022-12-31' 
+-- eliminate negative distance
+AND trip_distance > 0 
+AND fare_amount > 0
+AND extra > 0
+AND mta_tax > 0
+AND tip_amount > 0
+AND tolls_amount > 0
+AND ehail_fee > 0
+AND improvement_surcharge > 0
+AND total_amount > 0
+AND payment_type > 0
+AND trip_type > 0
+AND congestion_surcharge > 0

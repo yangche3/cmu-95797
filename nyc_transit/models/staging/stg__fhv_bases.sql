@@ -5,10 +5,10 @@ WITH source AS (
 cleaned AS(
     
     SELECT 
-        base_number, 
-        base_name,
-        dba,
-        dba_category,
+        TRIM(BOTH ' ' FROM base_number) as base_number, 
+        TRIM(BOTH ' ' FROM base_name) as base_name,
+        TRIM(BOTH ' ' FROM dba) as dba,
+        TRIM(BOTH ' ' FROM dba_category) as dba_category,
         filename
     FROM source
 )

@@ -37,4 +37,12 @@ cleaned AS (
 
 )
 
-SELECT * FROM cleaned
+SELECT * 
+FROM cleaned
+-- eliminate any future data
+WHERE pickup_datetime < '2022-12-31' 
+AND dropoff_datetime < '2022-12-31' 
+AND request_datetime < '2022-12-31'
+AND on_scene_datetime < '2022-12-31' 
+-- eliminate negative distance
+AND trip_miles > 0 

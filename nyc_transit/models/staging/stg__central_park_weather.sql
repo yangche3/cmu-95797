@@ -4,8 +4,8 @@ WITH source AS (
 
 cleaned AS(
     SELECT 
-        station, 
-        name,
+        TRIM(BOTH ' ' FROM station) as station, 
+        TRIM(BOTH ' ' FROM name) as name,
         date::date as date,
         awnd::double as wind_spd_avg,
         prcp::double as prcp,
@@ -18,4 +18,7 @@ cleaned AS(
 
 )
 
-SELECT * FROM cleaned 
+SELECT * 
+FROM cleaned 
+-- eliminate any future data
+WHERE date < '2022-12-31'  
