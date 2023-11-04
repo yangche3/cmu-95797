@@ -1,3 +1,4 @@
+-- The structure of all staging files is referenced from https://docs.getdbt.com/guides/best-practices/how-we-structure/2-staging 
 WITH source AS (
     SELECT * FROM {{source ('main','central_park_weather')}}
 ),

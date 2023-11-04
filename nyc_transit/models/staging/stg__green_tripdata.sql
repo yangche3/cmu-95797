@@ -1,3 +1,4 @@
+-- The structure of all staging files is referenced from https://docs.getdbt.com/guides/best-practices/how-we-structure/2-staging 
 WITH source AS (
 
     SELECT * FROM {{ source('main', 'green_tripdata') }}
@@ -40,12 +41,11 @@ WHERE lpep_pickup_datetime < '2022-12-31'
 AND lpep_dropoff_datetime < '2022-12-31' 
 -- eliminate negative distance
 AND trip_distance > 0 
-AND fare_amount > 0
+AND fare_amount >= 0
 AND extra > 0
 AND mta_tax > 0
 AND tip_amount > 0
 AND tolls_amount > 0
-AND ehail_fee > 0
 AND improvement_surcharge > 0
 AND total_amount > 0
 AND payment_type > 0
