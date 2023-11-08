@@ -1,36 +1,57 @@
-WITH source AS (
+with source as (
 
-	SELECT * FROM {{ source('main', 'bike_data') }}
-	
+    select * from {{ source('main', 'bike_data') }}
+
 ),
 
-cleaned AS (
-    
-	SELECT
-        bikeid::int as bike_id,
-        TRIM(BOTH ' ' FROM ride_id) as ride_id,
-        COALESCE(starttime, started_at)::TIMESTAMP as start_datetime,
-        COALESCE(stoptime, ended_at)::TIMESTAMP as end_datetime,
-        COALESCE(tripduration, datediff('second', start_datetime, end_datetime)):: int as trip_duration,
-        TRIM(BOTH ' ' FROM COALESCE("start station id", start_station_id)) as start_station_id,
-        TRIM(BOTH ' ' FROM COALESCE("start station name", start_station_name)) as start_station_name,
-        COALESCE("start station latitude", start_lat)::double as start_lat,
-        COALESCE("start station longitude", start_lng)::double as start_lng,
-        TRIM(BOTH ' ' FROM COALESCE("end station id", end_station_id)) as end_station_id,
-        TRIM(BOTH ' ' FROM COALESCE("end station name", end_station_name)) as end_station_name,
-        COALESCE("end station latitude", end_lat)::double as end_lat,
-        COALESCE("end station longitude", end_lng)::double as end_lng,
-        TRIM(BOTH ' ' FROM usertype) as user_type,
-        "birth year"::int as birth_year,
-        {{to_gender("gender")}} as gender,
-        TRIM(BOTH ' ' FROM rideable_type) as rideable_type,
-        TRIM(BOTH ' ' FROM member_casual) as member_casual,
+renamed as (
+
+    select
+        tripduration,
+        starttime,
+        stoptime,
+        "start station id",
+        "start station name",
+        "start station latitude",
+        "start station longitude",
+        "end station id",
+        "end station name",
+        "end station latitude",
+        "end station longitude",
+        bikeid,
+        usertype,
+        "birth year",
+        gender,
+        ride_id,
+        rideable_type,
+        started_at,
+        ended_at,
+        start_station_name,
+        start_station_id,
+        end_station_name,
+        end_station_id,
+        start_lat,
+        start_lng,
+        end_lat,
+        end_lng,
+        member_casual,
         filename
 
-    FROM source
+    from source
+
 )
 
-SELECT * 
-FROM cleaned
--- eliminate negative duration
-WHERE trip_duration >= 0  
+select
+	coalesce(starttime, started_at)::timestamp as started_at_ts,
+	coalesce(stoptime, ended_at)::timestamp as ended_at_ts,
+	coalesce(tripduration::int,datediff('second', started_at_ts, ended_at_ts)) tripduration,
+	coalesce("start station id", start_station_id) as start_station_id,  
+	coalesce("start station name", start_station_name) as start_station_name,
+	coalesce("start station latitude", start_lat)::double as start_lat,
+	coalesce("start station longitude", start_lng)::double as start_lng, 
+	coalesce("end station id", end_station_id) as end_station_id,  
+	coalesce("end station name", end_station_name) as end_station_name,
+	coalesce("end station latitude", end_lat)::double as end_lat,
+	coalesce("end station longitude", end_lng)::double as end_lng,
+	filename
+from renamed

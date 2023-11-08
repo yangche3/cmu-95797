@@ -1,25 +1,25 @@
--- The structure of all staging files is referenced from https://docs.getdbt.com/guides/best-practices/how-we-structure/2-staging 
-WITH source AS (
-    SELECT * FROM {{source ('main','central_park_weather')}}
+with source as (
+
+    select * from {{ source('main', 'central_park_weather') }}
+
 ),
 
-cleaned AS(
-    SELECT 
-        TRIM(BOTH ' ' FROM station) as station, 
-        TRIM(BOTH ' ' FROM name) as name,
+renamed as (
+
+    select
+        station,
+        name,
         date::date as date,
-        awnd::double as wind_spd_avg,
+        awnd::double as awnd,
         prcp::double as prcp,
-        snow::double as snow_fall,
-        snwd::double as snow_depth,
-        tmax::int as tmp_max,
-        tmin::int as tmp_min,
+        snow::double as snow,
+        snwd::double as snwd,
+        tmax::int as tmax,
+        tmin::int as tmin,
         filename
-    FROM source
+
+    from source
 
 )
 
-SELECT * 
-FROM cleaned 
--- eliminate any future data
-WHERE date < '2022-12-31'  
+select * from renamed

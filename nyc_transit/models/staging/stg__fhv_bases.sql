@@ -1,16 +1,20 @@
-WITH source AS (
-    SELECT * FROM {{source ('main','fhv_bases')}}
+with source as (
+
+    select * from {{ source('main', 'fhv_bases') }}
+
 ),
 
-cleaned AS(
-    
-    SELECT 
-        TRIM(BOTH ' ' FROM base_number) as base_number, 
-        TRIM(BOTH ' ' FROM base_name) as base_name,
-        TRIM(BOTH ' ' FROM dba) as dba,
-        TRIM(BOTH ' ' FROM dba_category) as dba_category,
+renamed as (
+
+    select
+        base_number,
+        base_name,
+        dba,
+        dba_category,
         filename
-    FROM source
+
+    from source
+
 )
 
-SELECT * FROM cleaned 
+select * from renamed
