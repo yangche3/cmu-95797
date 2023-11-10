@@ -7,7 +7,7 @@ with source as (
 renamed as (
 
     select
-        base_number,
+        UPPER(TRIM(base_number,' ')) as base_number,
         base_name,
         dba,
         dba_category,
