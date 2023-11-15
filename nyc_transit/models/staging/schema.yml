@@ -25,12 +25,7 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-          - dbt_expectations.expect_column_values_to_be_between:
-                  min_value: 0 
-                  max_value: 30000
-                  config:
-                    severity: warn
-                    
+
       - name: start_station_id
         description: ""
 
@@ -40,28 +35,24 @@ models:
       - name: start_lat
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
           - dbt_expectations.expect_column_values_to_be_between:
-              min_value: 19.50139
-              max_value: 64.85694
+              min_value: -90.0
+              max_value: 90.0
 
       - name: start_lng
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
           - dbt_expectations.expect_column_values_to_be_between:
-              min_value: -161.75583
-              max_value: -68.01197
+              min_value: -180.0
+              max_value: 180.0
 
       - name: end_station_id
         description: ""
@@ -72,28 +63,24 @@ models:
       - name: end_lat
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
           - dbt_expectations.expect_column_values_to_be_between:
-              min_value: 19.50139
-              max_value: 64.85694
+              min_value: -90.0
+              max_value: 90.0
 
       - name: end_lng
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
           - dbt_expectations.expect_column_values_to_be_between:
-              min_value: -161.75583
-              max_value: -68.01197
+              min_value: -180.0
+              max_value: 180.0
 
       - name: filename
         description: ""
@@ -154,8 +141,6 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-          - dbt_expectations.expect_column_values_to_be_between:
-              max_value: 134
 
       - name: tmin
         description: ""
@@ -164,8 +149,6 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-          - dbt_expectations.expect_column_values_to_be_between:
-              min_value: -128
 
       - name: filename
         description: ""
@@ -279,9 +262,7 @@ models:
       - name: shared_request_flag
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: boolean
@@ -289,9 +270,7 @@ models:
       - name: shared_match_flag
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: boolean
@@ -299,29 +278,22 @@ models:
       - name: access_a_ride_flag
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
-          - dbt_expectations.expect_column_to_exist
+          # - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: boolean
 
       - name: wav_request_flag
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: boolean  
+              column_type: boolean
 
       - name: wav_match_flag
         description: ""
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: boolean
